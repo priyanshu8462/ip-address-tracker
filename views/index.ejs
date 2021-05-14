@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- displays site properly based on user's device -->
+
+   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+   <title>Frontend Mentor | IP Address Tracker</title>
+
+   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+   <link href="styles.css" rel="stylesheet">
+   <style>
+      .attribution {
+         font-size: 11px;
+         text-align: center;
+      }
+
+      .attribution a {
+         color: hsl(228, 45%, 44%);
+      }
+   </style>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin="" />
+</head>
+
+<body>
+   <div class="container">
+      <img src="images/pattern-bg.png" alt="" class="bg-image">
+      <div class="background">
+         <p class="head">IP Address Tracker</p>
+         <form action="/get-location" method="POST">
+            <input type="text" placeholder="Search for any IP address or domain" name="ip_address">
+            <button type="submit"><img src="images/icon-arrow.svg"></button>
+         </form>
+      </div>
+      <div class="data">
+         <div>
+            <p class="head">ip address</p>
+            <p class="value">
+               <%= object.ip %>
+            </p>
+         </div>
+         <div>
+            <p class="head">location</p>
+            <p class="value">
+               <%= object.location.city %>, <%= object.location.country %>
+                     <%= object.location.postalCode %>
+            </p>
+         </div>
+         <div>
+            <p class="head">timezone</p>
+            <p class="value">UTC <%= object.location.timezone %>
+            </p>
+         </div>
+         <div>
+            <p class="head">isp</p>
+            <p class="value">
+               <%= object.isp %>
+            </p>
+         </div>
+      </div>
+      <div class="map" id="mapid">
+
+      </div>
+   </div>
+
+   <input type="hidden" id="latitude" value="<%= object.location.lat%>">
+   <input type="hidden" id="longitude" value="<%= object.location.lng%>">
+
+
+
+   <!-- IP Address
+  Location
+  Timezone
+    UTC  add offset value dynamically using the API 
+  ISP -->
+
+   <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="#">Your Name Here</a>.
+   </div>
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""></script>
+
+   <script>
+      var lat = document.querySelector('#latitude').value;
+      var lng = document.querySelector('#longitude').value;
+      console.log(lat, " ", lng);
+      var mymap = L.map('mapid').setView([lat, lng], 13);
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicHJpeWFuc2h1ODQ2MiIsImEiOiJja29vbGR6b3YwMDRjMnpwa3ZqZm14Mnk4In0.PH3PbMYwcFK8CAtDwBPoxQ', {
+         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+         maxZoom: 18,
+         id: 'mapbox/streets-v11',
+         tileSize: 512,
+         zoomOffset: -1,
+         accessToken: 'your.mapbox.access.token'
+      }).addTo(mymap);
+
+      var marker = L.marker([lat, lng]).addTo(mymap);
+   </script>
+</body>
+
+</html>

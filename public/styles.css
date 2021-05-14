@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  font-family: "Rubik";
+  font-size: 18px;
+}
+
+.container {
+  width: 100%;
+}
+
+.bg-image {
+  width: 100vw;
+  height: 35vh;
+  position: absolute;
+  z-index: -1;
+}
+
+.background {
+  width: 100%;
+  min-height: 35vh;
+  text-align: center;
+}
+
+.background .head {
+  font-size: 2.4rem;
+  color: #fff;
+  font-weight: 600;
+  word-spacing: 10px;
+  letter-spacing: 1px;
+  padding: 1.5% 0;
+}
+
+.background input {
+  padding-left: 10px;
+  width: 40%;
+  height: 40px;
+  border: none;
+  border-radius : 10px 0 0 10px;
+}
+
+input::placeholder {
+  color: hsl(0, 0%, 59%);
+  font-weight: 600;
+}
+
+input:focus{
+  outline : none;
+  border-radius : 10px 0 0 10px;
+}
+
+.background button {
+  height: 42px;
+  width: 40px;
+  background: #000;
+  border: none;
+  margin-left: -8px;
+  cursor: pointer;
+  border-radius: 0 10px 10px 0;
+}
+
+.data {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  top: 28vh;
+  min-height: 15%;
+  width: 70vw;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+}
+
+.data div{
+  width: 25%;
+}
+
+.data div:not(:last-child){
+  border-right: 2px solid hsl(0, 0%, 59%);
+  margin-right: 5%;
+}
+
+.data .head {
+  color: hsl(0, 0%, 59%);
+  margin-bottom: 20px;
+  text-transform : uppercase;
+  font-weight: 500;
+}
+
+.data .value {
+  font-size: 22px;
+  width: 90%;
+  font-weight: 700;
+}
+
+.map {
+  background: violet;
+  min-height: 65vh;
+  width: 100%;
+  z-index: -1;
+}
