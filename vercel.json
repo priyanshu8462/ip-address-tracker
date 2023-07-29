@@ -1,5 +1,5 @@
 {
-    "version" : 1,
+    "version" : 2,
     "name" : "IP Addess Tracker",
     "builds" : [{
         "src" : "app.js",
